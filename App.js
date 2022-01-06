@@ -23,6 +23,8 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { store } from "./store.js"
+import TodoProvider from "./list-context/DoToListProvider";
+import HomeScreen from './Screens/Home'
 
 
 const Stack = createNativeStackNavigator();
@@ -42,7 +44,7 @@ const App: () => Node = () => {
   }
 
   return (
-    <Provider store={store}>
+    <TodoProvider>
     <NavigationContainer>
        <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
@@ -50,10 +52,9 @@ const App: () => Node = () => {
           component={HomeScreen}
           options={{ title: 'Welcome' }}
         />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-    </Provider>
+    </TodoProvider>
   );
 };
 
@@ -76,18 +77,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const HomeScreen = ({ navigation }) => {
-  return (
-    <Button
-      title="Go to Jane's profile"
-      onPress={() =>
-        navigation.navigate('Profile', { name: 'Jane' })
-      }
-    />
-  );
-};
-const ProfileScreen = ({ navigation, route }) => {
-  return <Text>This is {route.params.name}'s profile</Text>;
-};
+// const HomeScreen = ({ navigation }) => {
+//   return (
+//     <Button
+//       title="Go to Jane's profile"
+      
+//     />
+//   );
+// };
 
 export default App;
