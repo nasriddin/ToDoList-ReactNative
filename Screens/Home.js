@@ -40,6 +40,7 @@ const HomeScreen = ({ navigation }) => {
                 />
             {toDoCtx.items ? toDoCtx.items.map(item => (
                 <BouncyCheckbox
+                    key={item.id}
                     size={25}
                     text={item.title}
                     iconStyle={{ borderColor: "red" }}
